@@ -1,0 +1,15 @@
+spring:
+  application:
+    name: user-service
+  cloud:
+    config:
+      uri: http://localhost:8769
+      fail-fast: true
+#      #从git上读取配置需要此配置
+#      discovery:
+#        enabled: true
+#        service-id: config-server
+
+  #注意格式问题，yml对格式有着严格的要求
+  profiles:
+    active: pro

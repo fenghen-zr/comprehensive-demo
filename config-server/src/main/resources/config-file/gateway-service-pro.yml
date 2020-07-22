@@ -1,0 +1,34 @@
+server:
+  port: 5000
+
+#sensitiveHeaders为一个集合,敏感头,默认有Cookie,Set-Cookie,Authorization,本案例当中包含Authorization,所以可能被过滤
+zuul:
+  host:
+    connect-timeout-millis: 20000
+    socket-timeout-millis: 20000
+
+  routes:
+    user-service:
+      path: /userapi/**
+      serviceId: user-service
+      sensitiveHeaders:
+
+    blog-service:
+      path: /blogapi/**
+      serviceId: blog-service
+      sensitiveHeaders:
+      
+# ribbon:
+  # ReadTimeout: 20000
+  # ConnectTimeout: 20000
+  
+# hystrix:
+  # command:
+    # default:
+      # execution:
+        # isolation:
+          # thread:
+            # timeoutInMilliseconds: 20000
+
+
+

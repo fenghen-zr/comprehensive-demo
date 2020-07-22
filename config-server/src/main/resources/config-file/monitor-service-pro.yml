@@ -1,0 +1,28 @@
+server:
+  port: 8766
+
+#turbine监控
+  # 1. cluster-name-expression指定集群名称，默认表达式appName；此时：turbine.app-config需要配置想要监控的应用名称
+  # 2. 当cluster-name-expression: default时，turbine.aggregator.cluster-config可以不写，因为默认就是default
+  # 3. 当cluster-name-expression: metadata['cluster']时，假设想要监控的应用配置了eureka.instance.metadata-map.cluster: ABC，则需要配置，同时turbine.aggregator.cluster-config: ABC
+turbine:
+  app-config: blog-service,user-service  #聚合的服务名
+  aggregator:
+    cluster-config: default  #聚合监控的集群配置
+  cluster-name-expression: new String("default") #默认为服务名的集群
+  combine-host: true
+  instance-url-suffix:
+    default: /hystrix.stream  #这里必须设置，否则默认程序会读取/actuator/hystrix.stream
+
+#actuator 包含web以及jmx两种方式，通常配合 @Endpoint,@WebEndpoint,@JmxEndpoint,或者EndpointWebExtension 使用
+# https://www.jianshu.com/p/e17e10f4ff06
+management:
+  endpoints:
+    web:
+#      bath-path: /manage  #/actuator/...  ==> /manage/...
+      exposure:
+        include: "*"  #激活所有的端点的web方式请求  同理 management.endpoints.jmx.exposure.include=* 激活所有的JMX方式请求
+#        exclude: env,beans #关闭端点web方式
+      cors:
+        allowed-origins: "*" #允许跨域的网址
+        allowed-methods: "*" #允许跨域的方法 如GET,POST等

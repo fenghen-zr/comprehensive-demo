@@ -1,0 +1,20 @@
+spring:
+  #数据源配置
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/sys-user?useUnicode=true&characterEncoding=utf8&characterSetResults=utf8&serverTimezone=GMT%2B8
+    username: root
+    password: root
+  #添加这个配置解决definition冲突问题
+  main:
+    allow-bean-definition-overriding: true
+  #orm框架
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
+server:
+  servlet:
+    contest-path: /uaa
+  port: 9999

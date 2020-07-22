@@ -1,0 +1,46 @@
+server:
+  port: 8762
+
+
+spring:
+  #链路追踪
+  zipkin:
+    base-url: http://localhost:9411/
+  sleuth:
+    web:
+      client:
+        enabled: true
+    sampler:
+      probability: 1.0 # 将采样比例设置为 1.0，也就是全部都需要。默认是 0.1
+  #数据源及orm框架
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/sys-user?useUnicode=true&characterEncoding=utf8&characterSetResults=utf8&serverTimezone=GMT%2B8
+    username: root
+    password: 123456
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+  #消息中间件
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+    publisher-confirms: true
+    virtual-host: /
+#权限限制配置
+security:
+  oauth2:
+    resource:
+      user-info-uri: http://localhost:5000/uaa/users/*     #暂时不确定怎么写配置
+    client:
+      clientId: service-hi
+      clientSecret: 123456
+      accessTokenUri: http://localhost:5000/uaa/oauth/token
+      grant-type: client_credentials,password
+      scope: server
+
+#测试数据
+foo: foo version 1

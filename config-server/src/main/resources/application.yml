@@ -1,0 +1,33 @@
+server:
+  port: 8769
+
+#从本地读取配置
+spring:
+  application:
+    name: config-server
+  cloud:
+    config:
+      server:
+        native:
+          search-locations: classpath:/config-file
+  profiles:
+     active: native
+
+##从git上拉取配置
+#spring:
+#  application:
+#    name: config-server
+#  cloud:
+#    config:
+#      server:
+#        git:
+#          uri: https://github.com/fenghen-zr/comprehensive-demo-git/comprehensive-demo
+#          search-paths: config-file
+#          username:
+#          passphrase:
+#      label: master
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
