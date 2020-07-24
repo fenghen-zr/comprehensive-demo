@@ -28,8 +28,8 @@
         <module>log-service</module>
         <module>monitor-service</module>
         <module>uaa-service</module>
-        <module>user-service</module>
         <module>common</module>
+        <module>user-service</module>
     </modules>
 
     <!--项目打包类型 ，一般来说：pom:父类型；jar:内部调用或者作服务用；war:需要部署的项目-->
@@ -62,6 +62,14 @@
             <artifactId>junit-jupiter-api</artifactId>
             <version>5.2.0</version>
             <scope>test</scope>
+        </dependency>
+
+        <!--自定义common-->
+        <dependency>
+            <groupId>com.priv</groupId>
+            <artifactId>common</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+            <scope>compile</scope>
         </dependency>
     </dependencies>
 

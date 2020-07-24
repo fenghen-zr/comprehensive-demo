@@ -30,15 +30,19 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     private UserServiceDetail userServiceDetail;
 
     /**
-     * 配置了所有的请求都需要安全验证
+     * 配置请求拦截，登录登出登Spring Security的基本配置
      * @param http
      * @throws Exception
      */
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
+                //不使用session，所以可以不启用该功能
                 .csrf().disable()
+                //允许配置请求缓存
                 .exceptionHandling()
+                //自定义AuthenticationEntryPoint，用来解决匿名用户访问无权限资源时的异常
+                //另一个自定义AccessDeineHandler 用来解决认证过的用户访问无权限资源时的异常
                 .authenticationEntryPoint(new AuthenticationEntryPoint() {
                     @Override
                     public void commence(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, AuthenticationException e) throws IOException, ServletException {
@@ -46,6 +50,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                     }
                 })
                 .and()
+                //允许基于使用HttpServletRequest限制访问
                 .authorizeRequests()
                 .antMatchers("/**").authenticated()
                 .and()

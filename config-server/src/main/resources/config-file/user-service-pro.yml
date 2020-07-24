@@ -17,7 +17,7 @@ spring:
     driver-class-name: com.mysql.jdbc.Driver
     url: jdbc:mysql://localhost:3306/sys-user?useUnicode=true&characterEncoding=utf8&characterSetResults=utf8&serverTimezone=GMT%2B8
     username: root
-    password: 123456
+    password: root
   jpa:
     hibernate:
       ddl-auto: update
@@ -30,11 +30,12 @@ spring:
     password: guest
     publisher-confirms: true
     virtual-host: /
+
 #权限限制配置
 security:
   oauth2:
     resource:
-      user-info-uri: http://localhost:5000/uaa/users/*     #暂时不确定怎么写配置
+      user-info-uri: http://localhost:5000/uaa/users/find    #暂时不确定怎么写配置
     client:
       clientId: service-hi
       clientSecret: 123456

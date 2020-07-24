@@ -11,7 +11,7 @@ import java.security.Principal;
 @RequestMapping("/users")
 public class UserController {
 
-	@RequestMapping(value = "/current", method = RequestMethod.GET)
+	@RequestMapping(value = "/find", method = RequestMethod.GET)
 	public Principal getUser(Principal principal) {
 		return principal;
 	}

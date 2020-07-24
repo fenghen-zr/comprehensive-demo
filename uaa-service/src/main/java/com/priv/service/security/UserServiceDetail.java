@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 /**
  * 实现UserDetailsService接口，该接口根据用户名获取用户的所有信息
+ * @author fenghen
  */
 @Service
 public class UserServiceDetail implements UserDetailsService {
